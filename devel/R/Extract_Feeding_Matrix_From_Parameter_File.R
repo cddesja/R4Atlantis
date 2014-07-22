@@ -1,19 +1,16 @@
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' Extract the availability matrix from the biological Parameterfile (*.prm)
+#' 
+#' 
+#' This function extacts the availability matrix from the biological Parameterfile
+#' @param model-path
+#' @param filename of the parameterfile
+#' 
+#' @examples 
+#' get_availability_matrix(model_path = "Z://Atlantis//ATLANTIS NSmodel", filename = "NorthSea_biol_fishing_final.prm")
+#' @export
 
-# Extract Feeding Matrix from Parameterfile "NorthSea_biol_fishing_final.prm"
 
-# Author:    Alexander Keth
-# Institute: Instutute for Hydrobiology and Fisheries Science (IHF)
-# Date:      10.07.2014
-
-# String to test the function!
-# filename <- "NorthSea_biol_fishing_final.prm"
-
-# Userinput: Modelpath!
-model_path <- "Z://Atlantis//ATLANTIS NSmodel"
-
-get.availability.matrix <- function(filename = "NorthSea_biol_fishing_final.prm")
+get_availability_matrix <- function(model_path, filename)
 {
   # Read in Parameterfile
   parfile <- readLines(file.path(model_path, filename), warn = F)
@@ -45,9 +42,3 @@ get.availability.matrix <- function(filename = "NorthSea_biol_fishing_final.prm"
   # result <- melt(result, id.vars = c("pred", "pred.cat", "prey.cat"), measure.vars = names(result)[1:55], variable.name = "prey", value.name = "avail")
   return(result)
 }
-
-
-
-
-
-
