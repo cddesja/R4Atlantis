@@ -36,7 +36,7 @@ get_ids_fishbase <- function(fish, exclude_subspecies = T){
   # Exclude Subspecies if needed!
   if(exclude_subspecies){
     exclude_ids <- which(sapply(str_split(fb_names, " "), length) == 3)
-    if(length(exclude_ids) >= 0){
+    if(length(exclude_ids) >= 1){
       fb_names    <- fb_names[-exclude_ids]
       list_id     <- list_id[-exclude_ids]
       fishbase_id <- fishbase_id[-exclude_ids]     
