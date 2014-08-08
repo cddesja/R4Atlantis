@@ -8,6 +8,6 @@ To install:
 
 ```R
 library(devtools)
-install_github(username = "cddesjardins", repo = "R4Atlantis")
+install_github(username = "lundinn", repo = "R4Atlantis")
 ```
 
