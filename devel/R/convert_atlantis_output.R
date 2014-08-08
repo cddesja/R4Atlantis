@@ -13,7 +13,7 @@
 #' @details This functions converts the ATLANTIS output to a dataframe which can be processed in R.
 #' @keywords gen
 #' @examples 
-#' load_atlantis_output(model_path = ""Z://Atlantis//ATLANTIS NSmodel", filename = "outputNorthSea.nc", select_variable = "ResN", biomasspools = c("large_crabs", "small_epifauna", "sessile_epifauna", "epifaunal_macrobenthos"))
+#' load_atlantis_output(model_path = "Z://Atlantis//ATLANTIS NSmodel", filename = "outputNorthSea.nc", select_variable = "ResN", biomasspools = c("large_crabs", "small_epifauna", "sessile_epifauna", "epifaunal_macrobenthos"))
 #' @export
 
 # Author:    Alexander Keth
@@ -90,20 +90,8 @@ convert_atlantis_output <- function(model_path, filename, select_groups, select_
   return(at_data_long) 
 }
 
-load_atlantis_output <- function(select_groups, select_variable, var_names_ncdf, at_out){
-  search <- unlist(lapply(select_groups, paste0, c("", 1:10)))
-  search <- unlist(lapply(search, paste, select_variable, sep = "_"))
-  search <- search[is.element(search, var_names_ncdf)]
-  result <- lapply(search, get.var.ncdf, nc = at_out)  
-  return(result)
-}
 
-combine_lists_add_polygons <- function(list, n_boxes){
-  result <- lapply(list, as.data.frame)
-  result <- do.call(rbind, result)
-  result$polygon  <- rep(c(0:(n_boxes - 1)), times = dim(result)[1] / n_boxes)
-  return(result)
-}
+
 
 
 

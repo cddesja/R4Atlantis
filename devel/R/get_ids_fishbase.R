@@ -8,7 +8,7 @@
 #'
 #' @details The function depends on the package "rfishbase" which creates a local copy of the fishbase database. The IDs are needed to generate URLs to scan www.fishbase.org for detailed informations about fish growth.
 #' @examples
-#' get_ids_fishbase(c("Gadus morhua", "Merlangius merlangus))
+#' get_ids_fishbase(c("Gadus morhua", "Merlangius merlangus"))
 #' @export
 
 

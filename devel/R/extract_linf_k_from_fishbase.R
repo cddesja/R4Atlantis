@@ -8,7 +8,7 @@
 #'
 #' @details Before the actual extraction takes place fishbaseh IDs for every species are extracted using the function "get_ids_fishbase". The IDs are needed to generate the URLs lateron. At the moment subspecies can only be excluded from the extraction.
 #' @examples
-#' extract_linf_k_fishbase(c("Gadus morhua", "Merlangius merlangus))
+#' extract_linf_k_fishbase(c("Gadus morhua", "Merlangius merlangus"))
 #' @export
 
 
