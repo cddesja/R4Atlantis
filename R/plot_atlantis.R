@@ -20,7 +20,7 @@
 #' plot_atlantis <- function(model_path = file.path("z:", "Atlantis", "ATLANTIS NSmodel base"), filename_output = "outputNorthSea.nc", filename_prod = "outputNorthSeaPROD.nc", select_groups = get_groups(), output_path =  file.path("z:", "Atlantis", "ATLANTIS NSmodel Plots"))
 #' @export
 
-plot_atlantis_new <- function(model_path, 
+plot_atlantis <- function(model_path, 
                               filename_output = "outputNorthSea.nc", 
                               filename_prod = "outputNorthSeaPROD.nc", 
                               filename_init = "init_NorthSea.nc", 
