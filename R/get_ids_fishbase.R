@@ -1,16 +1,20 @@
-#' Extract fishbase IDs using the package "rfishbase"
+#' Extract fishbase IDs using the package "rfishbase" to generate species specific fishbase URLs
+#' 
+#' 
+#' This function extracts fishbase IDs using the database provided by the "rifishbase" package.
+#' @param fish Vector of fish species with genus and species information.
+#' @param exclude_subspecies Specification if subspecies (e.g. Sprattus sprattus balticus) should be excluded.
+#' @return List with species names and fishbase IDs.
 #'
-#'
-#' This function extracts fishbase IDs using the package "rfishbase"
-#' @param vector of fish species with genus and species
-#' @param specification if subspecies (e.g. Sprattus sprattus balticus) should be excluded!
-#' @return a list with species, and fishbase IDs
-#'
-#' @details The function depends on the package "rfishbase" which creates a local copy of the fishbase database. The IDs are needed to generate URLs to scan www.fishbase.org for detailed informations about fish growth.
+#' @details The function depends on the package "rfishbase" which creates a local copy of the fishbase database. The IDs are needed to generate URLs to scan www.fishbase.org for detailed informations about fish growth for example.
+#' @keywords gen
 #' @examples
-#' get_ids_fishbase(c("Gadus morhua", "Merlangius merlangus"))
+#' get_ids_fishbase(fish = c("Gadus morhua", "Merlangius merlangus"))
 #' @export
 
+# Comment in for debugging!
+# fish <- species
+# exclude_subspecies <- T
 
 get_ids_fishbase <- function(fish, exclude_subspecies = T){
   # Check if every fishname is composed of genus and species!
@@ -24,7 +28,10 @@ get_ids_fishbase <- function(fish, exclude_subspecies = T){
   # Check if every fishname is available at fishbase!
   xx <- lapply(fish, grepl, x = fb_names)
   xx <- which(unlist(lapply(xx, any)) == F)
-  if(length(xx) >= 1) warning("Not available at fishbase:\n", paste(fish[xx], collapse = "\n"))
+  if(length(xx) >= 1){
+    warning("Not available at fishbase:\n", paste(fish[xx], collapse = "\n"))
+    fish <- fish[-xx]
+  } 
   
   # Get list_id for every Prey.Species.Name! Thus only information for requested species is extracted!
   list_id <- unlist(lapply(fish, grep, x = fb_names))
@@ -35,9 +42,11 @@ get_ids_fishbase <- function(fish, exclude_subspecies = T){
   
   # Exclude Subspecies if needed!
   if(exclude_subspecies){
-    exclude_ids <- which(sapply(str_split(fb_names, " "), length) == 3)
+    exclude_ids <- which(sapply(str_split(fb_names, " "), function(x)x[2]) != sapply(str_split(fb_names, " "), function(x)x[3]))
     if(length(exclude_ids) >= 1){
       fb_names    <- fb_names[-exclude_ids]
+      # No more subspecies! Remove subspecies name
+      fb_names <- unlist(sapply(sapply(fb_names, str_split, pattern = " "), function(x)paste(x[1], x[2])))
       list_id     <- list_id[-exclude_ids]
       fishbase_id <- fishbase_id[-exclude_ids]     
     }
