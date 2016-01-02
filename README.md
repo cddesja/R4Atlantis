@@ -1,4 +1,6 @@
-# R4Atlantis
+# R4Atlantis-legacy
+
+# Please see the [R for Atlantis](https://github.com/r4atlantis) group page instead. The code below is not maintained. 
 
 R4Atlantis is a set of helper functions for creating, manipulating, and viewing Atlantis files from R. This package is a collaboration of researchers at the University of Iceland, NOAA, and the Institute of Hydrobiology and Fisheries Science in Hamburg. 
 
