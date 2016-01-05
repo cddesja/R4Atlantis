@@ -1,4 +1,4 @@
-# R4Atlantis-legacy
+# R4Atlantis
 
 # Please see the [R for Atlantis](https://github.com/r4atlantis) group page instead. The code below is not maintained. 
 
